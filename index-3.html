@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naoto Matsunaga</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@200;300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #0c0b0a;
+  --border: #222018;
+  --accent: #c9a96e;
+  --text: #d0c8be;
+  --dim: #7a7060;
+  --white: #f5f0e8;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 4rem;
+  background: linear-gradient(to bottom, rgba(12,11,10,0.95), transparent);
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: var(--white);
+  letter-spacing: 0.2em;
+  text-decoration: none;
+}
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--dim);
+  text-decoration: none;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--white); }
+
+/* HERO */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 4rem 6rem;
+  position: relative;
+  border-bottom: 1px solid var(--border);
+}
+.hero-bg-text {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(8rem, 20vw, 18rem);
+  font-weight: 300;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(201,169,110,0.07);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: 0.05em;
+}
+.hero-eyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--accent);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.hero-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.5rem, 9vw, 7.5rem);
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
+}
+.hero-name em {
+  display: block;
+  font-style: italic;
+  color: var(--accent);
+  font-size: 0.55em;
+  letter-spacing: 0.15em;
+  margin-top: 0.5rem;
+}
+.hero-message { max-width: 480px; margin-bottom: 2rem; }
+.hero-message-main {
+  font-size: 1rem;
+  color: var(--white);
+  line-height: 1.8;
+  margin-bottom: 0.6rem;
+  font-weight: 400;
+}
+.hero-message-sub {
+  font-size: 0.82rem;
+  color: var(--dim);
+  line-height: 2;
+}
+.hero-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--accent);
+  border: 1px solid rgba(201,169,110,0.35);
+  padding: 0.3rem 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+.tag:hover { background: rgba(201,169,110,0.07); border-color: var(--accent); }
+.hero-scroll {
+  position: absolute;
+  bottom: 3rem; right: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.55rem;
+  color: var(--dim);
+  letter-spacing: 0.2em;
+  writing-mode: vertical-rl;
+}
+.hero-scroll::before {
+  content: '';
+  display: block;
+  width: 1px; height: 60px;
+  background: linear-gradient(var(--accent), transparent);
+}
+
+/* SECTIONS */
+.section {
+  padding: 8rem 4rem;
+  border-bottom: 1px solid var(--border);
+}
+.section-inner { max-width: 900px; }
+.section-label {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+.label-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.5rem;
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1;
+  letter-spacing: 0.05em;
+}
+.label-ja {
+  font-size: 0.7rem;
+  color: var(--dim);
+  letter-spacing: 0.2em;
+  margin-bottom: 0.4rem;
+}
+.label-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  margin-left: auto;
+  padding-bottom: 0.4rem;
+}
+
+/* ABOUT */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: start;
+}
+.about-text {
+  font-size: 0.95rem;
+  line-height: 2.2;
+  color: var(--text);
+}
+.about-meta { display: flex; flex-direction: column; }
+.meta-row {
+  display: flex;
+  gap: 2rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.82rem;
+}
+.meta-row:first-child { border-top: 1px solid var(--border); }
+.meta-k {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+  width: 4em;
+  flex-shrink: 0;
+  padding-top: 0.1rem;
+  text-transform: uppercase;
+}
+.meta-v { color: var(--white); }
+
+/* VISION */
+.vision-main {
+  font-size: 1rem;
+  color: var(--white);
+  font-weight: 500;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  border-left: 2px solid var(--accent);
+  padding-left: 1.5rem;
+}
+.vision-body {
+  font-size: 0.9rem;
+  line-height: 2.2;
+  color: var(--text);
+  padding-left: 1.5rem;
+  border-left: 2px solid var(--border);
+  max-width: 580px;
+}
+
+/* TWO COL */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+.text-block-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.8rem;
+  font-style: italic;
+}
+.text-block-main {
+  font-size: 0.92rem;
+  color: var(--white);
+  font-weight: 500;
+  line-height: 1.7;
+  margin-bottom: 0.8rem;
+}
+.text-block-body {
+  font-size: 0.88rem;
+  line-height: 2.2;
+  color: var(--text);
+}
+
+/* ACCORDION */
+.accordion { display: flex; flex-direction: column; }
+.acc-item { border-top: 1px solid var(--border); }
+.acc-item:last-child { border-bottom: 1px solid var(--border); }
+.acc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.8rem 0;
+  cursor: pointer;
+  user-select: none;
+}
+.acc-header:hover .acc-title { color: var(--white); }
+.acc-title {
+  font-size: 1rem;
+  color: var(--text);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  transition: color 0.2s;
+}
+.acc-icon {
+  font-family: 'Space Mono', monospace;
+  font-size: 1rem;
+  color: var(--accent);
+  transition: transform 0.3s ease;
+  line-height: 1;
+}
+.acc-item.open .acc-icon { transform: rotate(45deg); }
+.acc-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+.acc-item.open .acc-body { max-height: 800px; }
+.acc-content { padding-bottom: 2rem; }
+
+/* TIMELINE */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  padding-left: 1rem;
+}
+.tl-item {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: 1.5rem;
+  position: relative;
+  padding-bottom: 2.5rem;
+}
+.tl-item:last-child { padding-bottom: 0; }
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: 7.75rem;
+  top: 0.6rem; bottom: 0;
+  width: 1px;
+  background: var(--border);
+}
+.tl-item:last-child::before { display: none; }
+.tl-item::after {
+  content: '';
+  position: absolute;
+  left: calc(7.75rem - 3px);
+  top: 0.6rem;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--dim);
+}
+.tl-item.current::after {
+  background: var(--accent);
+  box-shadow: 0 0 8px rgba(201,169,110,0.5);
+}
+.tl-item.past { opacity: 0.5; }
+.tl-date {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--dim);
+  letter-spacing: 0.05em;
+  padding-top: 0.1rem;
+  line-height: 1.6;
+  text-align: right;
+}
+.tl-body { padding-left: 1.2rem; }
+.tl-title {
+  font-size: 0.92rem;
+  color: var(--white);
+  font-weight: 400;
+  line-height: 1.5;
+  margin-bottom: 0.2rem;
+}
+.tl-sub { font-size: 0.78rem; color: var(--dim); }
+.now-badge {
+  display: inline-block;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.55rem;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  background: rgba(201,169,110,0.08);
+  padding: 0.1rem 0.45rem;
+  letter-spacing: 0.1em;
+  vertical-align: middle;
+  margin-left: 0.5rem;
+}
+
+/* SKILLS */
+.skill-desc {
+  font-size: 0.85rem;
+  color: var(--dim);
+  line-height: 2;
+  margin-bottom: 1.5rem;
+}
+.skill-tags { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+.skill-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--accent);
+  border: 1px solid rgba(201,169,110,0.4);
+  padding: 0.4rem 1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+.skill-tag:hover { background: rgba(201,169,110,0.07); border-color: var(--accent); }
+
+/* CONTACT */
+.contact-block { display: flex; flex-direction: column; }
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.contact-row:first-child { border-top: 1px solid var(--border); }
+.contact-row:last-child { border-bottom: none; }
+.contact-type {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--accent);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  width: 5em;
+  flex-shrink: 0;
+}
+.contact-val { font-size: 0.9rem; color: var(--white); flex: 1; }
+.contact-val a { color: var(--white); text-decoration: none; transition: color 0.2s; }
+.contact-val a:hover { color: var(--accent); }
+.copy-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--dim);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.55rem;
+  padding: 0.2rem 0.6rem;
+  cursor: pointer;
+  letter-spacing: 0.1em;
+  transition: all 0.2s;
+}
+.copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+.copy-btn.copied { border-color: #6a9a6a; color: #6a9a6a; }
+
+/* FOOTER */
+footer {
+  padding: 3rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  color: var(--dim);
+  letter-spacing: 0.2em;
+  font-style: italic;
+}
+.footer-copy {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.55rem;
+  color: var(--dim);
+  letter-spacing: 0.15em;
+}
+
+/* REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.on { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 768px) {
+  nav { padding: 1.5rem 2rem; }
+  .nav-links { display: none; }
+  .hero { padding: 0 2rem 5rem; }
+  .section { padding: 5rem 2rem; }
+  .about-grid, .two-col { grid-template-columns: 1fr; gap: 3rem; }
+  footer { flex-direction: column; gap: 1rem; padding: 2rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">N. Matsunaga</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#vision">Vision</a></li>
+    <li><a href="#strengths">Strengths</a></li>
+    <li><a href="#details">Career</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-text">NAOTO</div>
+  <div class="hero-eyebrow">Engineer · Consultant · 2026</div>
+  <h1 class="hero-name">
+    松永 直人
+    <em>Naoto Matsunaga</em>
+  </h1>
+  <div class="hero-message">
+    <p class="hero-message-main">技術とロジックで、ビジネスの課題を解く。</p>
+    <p class="hero-message-sub">クラウド・AIを軸に、組織に実のある変化をもたらすエンジニアを目指しています。</p>
+  </div>
+  <div class="hero-tags">
+    <span class="tag">Cloud / AWS</span>
+    <span class="tag">AI</span>
+    <span class="tag">Consulting</span>
+    <span class="tag">IT</span>
+    <span class="tag">Automation</span>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div>
+        <div class="label-en">About</div>
+        <div class="label-ja">自己紹介</div>
+      </div>
+      <div class="label-num">01</div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        早稲田大学人間科学部を2026年3月に卒業し、同年4月より日本IBMコンサルティング事業部に入社。人間と組織の仕組みを学んだ背景を持ちながら、ITの力でビジネス課題を解決することに関心を持つ。クラウドやAIを「目的」ではなく「手段」として捉え、技術が実際の業務にどう貢献するかを常に意識している。現在はAWS・英語力の習得を継続中。
+      </div>
+      <div class="about-meta reveal">
+        <div class="meta-row">
+          <span class="meta-k">所属</span>
+          <span class="meta-v">日本IBM コンサルティング事業部</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-k">学歴</span>
+          <span class="meta-v">早稲田大学 人間科学部（2026卒）</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-k">Mail</span>
+          <span class="meta-v">naoto.m.dev@gmail.com</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-k">GitHub</span>
+          <span class="meta-v">naoto-m0413</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISION -->
+<section class="section" id="vision">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div>
+        <div class="label-en">Vision</div>
+        <div class="label-ja">目指す姿</div>
+      </div>
+      <div class="label-num">02</div>
+    </div>
+    <p class="vision-main reveal">技術を追うより、技術が生む価値を見る。</p>
+    <p class="vision-body reveal">クラウドとAIを起点に、業務を整理し、意思決定を支える仕組みを設計できるエンジニアであること。技術とビジネス、両方の言語を話せる人間でありたい。</p>
+  </div>
+</section>
+
+<!-- STRENGTHS + CAREER GOAL -->
+<section class="section" id="strengths">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div>
+        <div class="label-en">Strengths</div>
+        <div class="label-ja">強み・キャリア目標</div>
+      </div>
+      <div class="label-num">03</div>
+    </div>
+    <div class="two-col">
+      <div class="reveal">
+        <div class="text-block-title">Strengths</div>
+        <p class="text-block-main">正確な問題定義と、再現性のある解法を重視する。</p>
+        <p class="text-block-body">課題を分解し、仮説を立て、検証する。そのサイクルを着実に回すことが得意です。資格取得もその一環であり、実務で機能する知識を意識的に選んで積んでいます。</p>
+      </div>
+      <div class="reveal">
+        <div class="text-block-title">Career Goal</div>
+        <p class="text-block-main">技術とビジネス、両軸で価値を出せるコンサルタントになること。</p>
+        <p class="text-block-body">5年以内に、クラウド設計とプロセス改善を軸にプロジェクトをリードできるレベルを目指す。長期的には、日本企業のDX推進に実務で貢献したいと考えています。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DETAILS -->
+<section class="section" id="details">
+  <div class="section-inner" style="max-width:100%">
+    <div class="section-label reveal">
+      <div>
+        <div class="label-en">Details</div>
+        <div class="label-ja">経歴・スキル・連絡先</div>
+      </div>
+      <div class="label-num">04</div>
+    </div>
+    <div class="accordion reveal">
+
+      <div class="acc-item open">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <span class="acc-title">経歴 / Career</span>
+          <span class="acc-icon">+</span>
+        </div>
+        <div class="acc-body">
+          <div class="acc-content">
+            <div class="timeline">
+              <div class="tl-item current">
+                <div class="tl-date">2026<br>Apr.</div>
+                <div class="tl-body">
+                  <div class="tl-title">日本IBM 入社 <span class="now-badge">Now</span></div>
+                  <div class="tl-sub">コンサルティング事業部</div>
+                </div>
+              </div>
+              <div class="tl-item past">
+                <div class="tl-date">2026<br>Mar.</div>
+                <div class="tl-body">
+                  <div class="tl-title">早稲田大学 人間科学部 卒業</div>
+                </div>
+              </div>
+              <div class="tl-item past">
+                <div class="tl-date">2022<br>Apr.</div>
+                <div class="tl-body">
+                  <div class="tl-title">早稲田大学 人間科学部 入学</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <span class="acc-title">スキル・資格 / Skills</span>
+          <span class="acc-icon">+</span>
+        </div>
+        <div class="acc-body">
+          <div class="acc-content">
+            <p class="skill-desc">資格は、体系的な知識を持つことの証明として取得しています。技術は手段であり、業務課題の解決に直結するスキルセットを意識的に選んで習得しています。</p>
+            <div class="skill-tags">
+              <span class="skill-tag">日商簿記 2級</span>
+              <span class="skill-tag">基本情報技術者試験</span>
+              <span class="skill-tag">AWS CLF</span>
+              <span class="skill-tag">Cloud設計</span>
+              <span class="skill-tag">AI活用</span>
+              <span class="skill-tag">業務自動化</span>
+              <span class="skill-tag">TOEIC（学習中）</span>
+              <span class="skill-tag">AWS SAA（学習中）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <span class="acc-title">連絡先 / Contact</span>
+          <span class="acc-icon">+</span>
+        </div>
+        <div class="acc-body">
+          <div class="acc-content">
+            <div class="contact-block">
+              <div class="contact-row">
+                <span class="contact-type">Email</span>
+                <span class="contact-val">
+                  <a href="mailto:naoto.m.dev@gmail.com">naoto.m.dev@gmail.com</a>
+                </span>
+                <button class="copy-btn" onclick="copyEmail(this)">copy</button>
+              </div>
+              <div class="contact-row">
+                <span class="contact-type">GitHub</span>
+                <span class="contact-val">
+                  <a href="https://github.com/naoto-m0413" target="_blank" rel="noopener">github.com/naoto-m0413</a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Naoto Matsunaga</div>
+  <div class="footer-copy">© 2026 Naoto Matsunaga</div>
+</footer>
+
+<script>
+  function toggleAcc(header) {
+    header.parentElement.classList.toggle('open');
+  }
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('on');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    el.style.transitionDelay = (i % 3) * 0.1 + 's';
+    io.observe(el);
+  });
+
+  function copyEmail(btn) {
+    navigator.clipboard.writeText('naoto.m.dev@gmail.com').then(() => {
+      btn.textContent = 'copied!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'copy'; btn.classList.remove('copied'); }, 2000);
+    });
+  }
+</script>
+</body>
+</html>
